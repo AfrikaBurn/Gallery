@@ -1,0 +1,14 @@
+name = Node Gallery
+description = "A gallery module."
+core = 7.x
+dependencies[] = node_gallery_api
+dependencies[] = image
+dependencies[] = options
+package = "Node Gallery"
+
+; Information added by Drupal.org packaging script on 2017-02-04
+version = "7.x-1.2"
+core = "7.x"
+project = "node_gallery"
+datestamp = "1486235286"
+
