@@ -92,7 +92,7 @@
             unset($css['sites/all/modules/ctools/css/ctools.css']);
             unset($css['sites/all/modules/panels/css/panels.css']);
             unset($css['sites/all/modules/toolbar_hide/toolbar_hide.css']);
-            unset($css['sites/all/modules/date/date_api/date.css']); 
+            unset($css['sites/all/modules/date/date_api/date.css']);
             unset($css['sites/all/modules/date/date_popup/themes/datepicker.1.7.css']);
             unset($css['sites/all/modules/date/date_repeat_field/date_repeat_field.css']);
             unset($css['sites/all/modules/livethemer/css/livethemer.css']);
@@ -145,8 +145,8 @@
                       <div class="navbar-inner">
                           <div class="container-fluid">
                               <a class="btn btn-navbar" data-toggle="collapse" data-target="#main-nav">
-                              <span class="icon-bar"></span> 
-                              <span class="icon-bar"></span> 
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
                               <span class="icon-bar"></span>
                               </a>
                               <div class="nav-collapse collapse" id="main-nav">
@@ -199,7 +199,7 @@
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
     </div>
     <div class= "clear"></div>
     <div class="container-3 hide-below-979px" id="menu-bar">
@@ -246,7 +246,7 @@
                         <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
                         <?php print render($page['help']); ?>
                         <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-                        <?php print render($page['content']); ?>           
+                        <noscript><?php print render($page['content']); ?> </noscript>
                         <?php print $feed_icons; ?>
                     </div>
                 <div class='clr'></div>
@@ -258,7 +258,7 @@
             <div class='container-2'>
                 <?php print render($page['social']); ?>
             </div>
-        </section> 
+        </section>
     */ ?>
     <section id="footer">
         <div class='container-2'>
