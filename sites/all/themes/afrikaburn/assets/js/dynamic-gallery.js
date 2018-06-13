@@ -28,19 +28,19 @@ jQuery(document).ready(function() {
   jQuery.each(jQuery(table).find('td'), function(index, row) {
     thumbnailUrls.push(jQuery(row).find('img').attr('src'));
   });
-  console.log(thumbnailUrls);
   generateInitialMarkup(thumbnailUrls);
 
 
   function generateInitialMarkup(thumbnailUrls) {
-    console.log('generateInitialMarkup');
     var allImageElements = [];
     jQuery.each(thumbnailUrls, function(index, thumbnailUrl) {
-      var fullSizeImageUrl = thumbnailUrl.replace('node_gallery_thumbnail', 'node_gallery_display');
-      var element = `<a class='gallery-thumbnail' data-fancybox='gallery' href='${fullSizeImageUrl}' data-thumbmail-image='${thumbnailUrl}'>
+      if (thumbnailUrl) {
+        var fullSizeImageUrl = thumbnailUrl.replace('/sites/gallery.local/files/styles/node_gallery_thumbnail/public/node_gallery', '/sites/gallery.local/files/node_gallery');
+        var element = `<a class='gallery-thumbnail' data-fancybox='gallery' href='${fullSizeImageUrl}' data-thumbmail-image='${thumbnailUrl}'>
         <div class='gallery-thumbnail-inner' style='background-image: none; display: none;'></div>
         </a>`;
         jQuery('.image-gallery').append(element);
+      }
     });
     loadImageBatch('from generateInitialMarkup');
   }
