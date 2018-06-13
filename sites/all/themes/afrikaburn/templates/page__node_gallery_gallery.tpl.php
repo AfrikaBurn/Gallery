@@ -67,76 +67,74 @@
  */
     global $user;
     function afrikaburn_css_alter(&$css) {
-        // Remove defaults.css file.
-        //unset($css['misc/ui/jquery.ui.core.css']);
-        //unset($css['misc/ui/jquery.ui.core.css']);
-        //unset($css['misc/ui/jquery.ui.theme.css']);
-        //unset($css['misc/ui/jquery.ui.datepicker.css']);
-
-        unset($css['modules/system/system.base.css']);
-        unset($css['modules/system/system.menus.css']);
-        unset($css['modules/system/system.messages.css']);
-        unset($css['modules/system/system.theme.css']);
-
-        unset($css['modules/overlay/overlay-parent.css']);
-        unset($css['modules/comment/comment.css']);
-        unset($css['modules/field/theme/field.css']);
-        unset($css['modules/node/node.css']);
-        unset($css['modules/search/search.css']);
-        unset($css['modules/user/user.css']);
-        unset($css['modules/shortcut/shortcut.css']);
-        unset($css['modules/toolbar/toolbar.css']);
-        unset($css['modules/poll/poll.css']);
-        unset($css['modules/forum/forum.css']);
-        unset($css['modules/file/file.css']);
-        unset($css['modules/image/image.css']);
-
-        unset($css['sites/all/modules/ctools/css/ctools.css']);
-        unset($css['sites/all/modules/panels/css/panels.css']);
-        unset($css['sites/all/modules/toolbar_hide/toolbar_hide.css']);
-        unset($css['sites/all/modules/date/date_api/date.css']);
-        unset($css['sites/all/modules/date/date_popup/themes/datepicker.1.7.css']);
-        unset($css['sites/all/modules/date/date_repeat_field/date_repeat_field.css']);
-        unset($css['sites/all/modules/livethemer/css/livethemer.css']);
-        unset($css['sites/all/modules/logintoboggan/logintoboggan.css']);
-        unset($css['sites/all/modules/views/css/views.css']);
-        unset($css['sites/all/modules/date/date_popup/themes/jquery.timeentry.css']);
-        unset($css['sites/all/modules/ckeditor/css/ckeditor.css']);
-        unset($css['sites/all/modules/field_group/field_group.field_ui.css']);
-    }
+            // Remove defaults.css file.
+            //unset($css['misc/ui/jquery.ui.core.css']);
+            //unset($css['misc/ui/jquery.ui.core.css']);
+            //unset($css['misc/ui/jquery.ui.theme.css']);
+            //unset($css['misc/ui/jquery.ui.datepicker.css']);
+            unset($css['modules/system/system.base.css']);
+            unset($css['modules/system/system.base.css']);
+            unset($css['modules/system/system.menus.css']);
+            unset($css['modules/system/system.messages.css']);
+            unset($css['modules/system/system.theme.css']);
+            unset($css['modules/overlay/overlay-parent.css']);
+            unset($css['modules/comment/comment.css']);
+            unset($css['modules/field/theme/field.css']);
+            unset($css['modules/node/node.css']);
+            unset($css['modules/search/search.css']);
+            unset($css['modules/user/user.css']);
+            unset($css['modules/shortcut/shortcut.css']);
+            unset($css['modules/toolbar/toolbar.css']);
+            unset($css['modules/poll/poll.css']);
+            unset($css['modules/forum/forum.css']);
+            unset($css['modules/file/file.css']);
+            unset($css['modules/image/image.css']);
+            unset($css['sites/all/modules/ctools/css/ctools.css']);
+            unset($css['sites/all/modules/panels/css/panels.css']);
+            unset($css['sites/all/modules/toolbar_hide/toolbar_hide.css']);
+            unset($css['sites/all/modules/date/date_api/date.css']);
+            unset($css['sites/all/modules/date/date_popup/themes/datepicker.1.7.css']);
+            unset($css['sites/all/modules/date/date_repeat_field/date_repeat_field.css']);
+            unset($css['sites/all/modules/livethemer/css/livethemer.css']);
+            unset($css['sites/all/modules/logintoboggan/logintoboggan.css']);
+            unset($css['sites/all/modules/views/css/views.css']);
+            unset($css['sites/all/modules/date/date_popup/themes/jquery.timeentry.css']);
+            unset($css['sites/all/modules/ckeditor/css/ckeditor.css']);
+            unset($css['sites/all/modules/field_group/field_group.field_ui.css']);
+        }
 ?>
-    <div id="top-bar">
+
+ <div id="top-bar">
         <div class="container-2">
             <div class="container-1">
                 <div class='logo-container'>
                       <a href="http://www.afrikaburn.com">
                           <img src="<?php print base_path() . path_to_theme(); ?>/assets/images/date-badge-2017.png" />
                       </a>
-                </div>
-                <?php print render($page['create-tickets']); ?>
-                <div class='user-menu'>
-                   <?php print render($page['user-menu']); ?>
-                </div>
-                <div class='user-greeting'>
-                    <?php print render($page['user-greeting']); ?>
-                    <?php if($user->uid > 0): ?>
-                        <div class="user-menu-icon">
-                            <span class="user-icon-bar"></span>
-                            <span class="user-icon-bar"></span>
-                            <span class="user-icon-bar"></span>
-                        </div>
-                    <?php endif; ?>
-                </div>
+                  </div>
+            </div>
+            <?php print render($page['create-tickets']); ?>
+            <div class='user-menu'>
+               <?php print render($page['user-menu']); ?>
+            </div>
+            <div class='user-greeting'>
+                  <?php print render($page['user-greeting']); ?>
+                  <?php if($user->uid > 0): ?>
+                      <div class="user-menu-icon">
+                          <span class="user-icon-bar"></span>
+                          <span class="user-icon-bar"></span>
+                          <span class="user-icon-bar"></span>
+                      </div>
+                <?php endif; ?>
+            </div>
                 <div class='social-media-links hide-below-979px'>
-                   <div class='sm-link twitter'>
-                       <a href='https://www.twitter.com/afrikaburn' title='Afrikaburn on Twitter' target='_blank'></a>
-                   </div>
-                   <div class='sm-link facebook'>
-                       <a href='https://www.facebook.com/afrikaburn' title='Afrikaburn on Facebook' target='_blank'></a>
-                   </div>
+                    <div class='sm-link twitter'>
+                        <a href='https://www.twitter.com/afrikaburn' title='Afrikaburn on Twitter' target='_blank'></a>
+                    </div>
+                    <div class='sm-link facebook'>
+                        <a href='https://www.facebook.com/afrikaburn' title='Afrikaburn on Facebook' target='_blank'></a>
+                    </div>
                 </div>
-            </div>
-            </div>
         </div>
     </div>
     <div class="container-3 show-below-979px" id="mobile-menu-bar">
@@ -222,7 +220,6 @@
             </div>
         </div>
     </div>
-
     <div class="container-3 show-below-979px" id="social-media-links-bar">
         <div class="container-2">
             <div class="container-1">
@@ -238,45 +235,37 @@
             <div class='clr'></div>
         </div>
     </div>
-
-
     <section id="main-content-strip" class="container-3">
         <div class='container-2'>
             <div class='container-1'>
                     <?php print render($title_prefix); ?>
-                	<?php if ($title): ?><h1><?php print $title; ?></h1><?php endif; ?>
-                	<?php print render($title_suffix); ?>
-                    <div class="body-content">
+                    <?php if ($title): ?><h1><?php print $title; ?></h1><?php endif; ?>
+                    <?php print render($title_suffix); ?>
+                     <div class="body-content">
                         <?php print $messages; ?>
-                        <div class='main-block'>
-                    		<?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
-                            <?php print render($page['help']); ?>
-                            <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-                            <?php print render($page['content']); ?>
-                            <?php print $feed_icons; ?>
-                        </div>
-                        <div class="sidebar-outer">
-                            <div class="sidebar">
-                                <?php print render($page['sidebar']); ?>
-                            </div>
-                        </div>
-                        <div class='clr'></div>
-                 </div>
+                        <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
+                        <?php print render($page['help']); ?>
+                        <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
+                        <noscript><?php print render($page['content']); ?> </noscript>
+                        <?php print $feed_icons; ?>
+                    </div>
+                <div class='clr'></div>
             </div>
         </div>
     </section>
-   <?php /*
-   <section id="social-icons">
-        <div class='container-2'>
-            <?php print render($page['social']); ?>
-        </div>
-    </section>
+    <?php /*
+       <section id="social-icons">
+            <div class='container-2'>
+                <?php print render($page['social']); ?>
+            </div>
+        </section>
     */ ?>
     <section id="footer">
         <div class='container-2'>
             <div class='container-1'>
                 <h2>Volunteer now!</h2>
                 <div class='body-content'>
+
                     <div class="blocks-container footer three-column">
                         <div class='block-outer'>
                             <div class='block-inner'>
@@ -303,6 +292,3 @@
             <?php print render($page['copyright']); ?>
         </div>
     </section>
-
-
-
