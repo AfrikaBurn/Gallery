@@ -15,6 +15,10 @@ ul.pager{
   display: flex;
 }
 
+ul.pager li{
+  list-style-type: none;
+}
+
 /*
 no-sidebars class on body will hide the sidebar, and make the rest of the content full width.
 Need some classnames for links on home page.
