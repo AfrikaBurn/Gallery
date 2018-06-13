@@ -30,20 +30,20 @@ jQuery(document).ready(function() {
   });
   console.log(thumbnailUrls);
   generateInitialMarkup(thumbnailUrls);
-}
 
-function generateInitialMarkup(thumbnailUrls) {
-  console.log('generateInitialMarkup');
-  var allImageElements = [];
-  jQuery.each(thumbnailUrls, function(index, thumbnailUrl) {
-    var fullSizeImageUrl = thumbnailUrl.replace('node_gallery_thumbnail', 'node_gallery_display');
-    var element = `<a class='gallery-thumbnail' data-fancybox='gallery' href='${fullSizeImageUrl}' data-thumbmail-image='${thumbnailUrl}'>
-      <div class='gallery-thumbnail-inner' style='background-image: none; display: none;'></div>
-      </a>`;
-      jQuery('.image-gallery').append(element);
-  });
-  loadImageBatch('from generateInitialMarkup');
 
+  function generateInitialMarkup(thumbnailUrls) {
+    console.log('generateInitialMarkup');
+    var allImageElements = [];
+    jQuery.each(thumbnailUrls, function(index, thumbnailUrl) {
+      var fullSizeImageUrl = thumbnailUrl.replace('node_gallery_thumbnail', 'node_gallery_display');
+      var element = `<a class='gallery-thumbnail' data-fancybox='gallery' href='${fullSizeImageUrl}' data-thumbmail-image='${thumbnailUrl}'>
+        <div class='gallery-thumbnail-inner' style='background-image: none; display: none;'></div>
+        </a>`;
+        jQuery('.image-gallery').append(element);
+    });
+    loadImageBatch('from generateInitialMarkup');
+  }
 
   function loadImageBatch(test) {
     jQuery('#footer').css('display', 'none');
