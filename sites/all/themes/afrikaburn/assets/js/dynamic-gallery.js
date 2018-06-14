@@ -11,6 +11,7 @@ jQuery(document).ready(function() {
 
   var mainContentText = jQuery('noscript').text();
   var mainContentHTML = jQuery.parseHTML(mainContentText);
+  var pager = jQuery(mainContentHTML).find('ul.pager');
   var table = jQuery(mainContentHTML).find('table');
   var header = jQuery(mainContentHTML).find('h3').text();
 
@@ -20,8 +21,8 @@ jQuery(document).ready(function() {
   <div class="image-gallery" data-thumbnail-dimensions="5:4"></div>
   <div class="clr"></div>
   <div class="load-more-images"><div class="loader"></div></div>`
-
   jQuery('#main-content-strip .body-content').append(galleryElement);
+  jQuery('#main-content-strip .body-content').append(pager);
 
   var thumbnailUrls = [];
 
