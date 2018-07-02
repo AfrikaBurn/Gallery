@@ -108,6 +108,7 @@ div.fancybox-container button:hover {
 
 section.filters {
   position: fixed;
+  display: none;
   top: 0;
   left: 0;
   height: 100%;
@@ -117,20 +118,34 @@ section.filters {
   overflow-y: scroll;
 }
 
+section.filters.show {
+  display: block;
+}
+
 section.filters  aside {
   ul li {
     list-style: none;
     padding: 5px 0;
+    margin: 0;
     a {
       text-decoration: none;
       color: #bbb;
     }
+    a.facetapi-active {
+      color: @ab-peach;
+      display: block;
+      padding-left: 20px;
+    }
   }
+}
+
+section.filters aside.filter-active {
+  border: 1px solid @ab-peach;
 }
 
 section.filters .flex-box aside {
   margin: 10px;
-  padding: 10px 20px;
+  padding: 10px 40px 10px 20px;
   background: #111;
   .border-radius(@radiusSize: 3px);
   max-height: 300px;
@@ -141,14 +156,26 @@ section.filters .close-button {
   height: 50px;
   width: 50px;
   border: 2px solid #fff;
+  border-width: 0;
   float: right;
   margin: 20px 20px 0 0;
   .border-radius(@radiusSize: 50%);
+  font-family: Verdana;
+  text-transform: none;
+  background: transparent;
+  font-size: 30px;
+  padding: 0;
+
+  svg {
+    fill: #fff;
+  }
 }
 
 section.filters .close-button:hover {
   cursor: pointer;
   border-color: @ab-peach;
+  color: @ab-peach;
+
 }
 
 section.filters .views-exposed-widget {
@@ -164,8 +191,46 @@ section.filters .views-widget input#edit-search-api-views-fulltext {
   margin-top: 0;
 }
 
+section.filters div.filters-active-text {
+  color: @ab-peach;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  border-bottom: 1px solid @ab-maroon;
+  padding-bottom: 10px;
+  svg {
+    fill: @ab-peach;
+    float: left;
+    width: 20px;
+    margin-right: 7px;
+  }
+
+}
+
 .flex-box {
   display: flex;
   flex-wrap: wrap;
   margin: -10px;
 }
+
+body.page-browse-search button.toggle-filters {
+  height: 50px;
+  width: 400px;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 30px;
+  float: none;
+}
+
+.filters-header {
+  text-align: center;
+  font-size: 2em/@body-content-text-font-size;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 150%;
+  margin-bottom: 20px;
+}
+
+.filters-header span.filter-name {
+  color: @ab-peach;
+}
+

@@ -239,7 +239,15 @@
         </div>
     </div>
 
-
+    <?php if ($page["filter_boxes"]): ?>
+        <section class="filters body-content">
+          <button class="close-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 796.9 797.2">Close<path d="M789.6 754.5l-356-356L789.5 42.7c9.8-9.8 9.8-25.6 0-35.4s-25.6-9.8-35.4 0L398.3 363.2 42.8 7.7c-9.8-9.8-25.6-9.8-35.4 0s-9.8 25.6 0 35.4l355.5 355.5L7.3 754.1c-9.8 9.8-9.8 25.6 0 35.4s25.6 9.8 35.4 0l355.6-355.6 356 356c9.8 9.8 25.6 9.8 35.4 0C799.4 780.1 799.4 764.2 789.6 754.5z"/></svg></button>
+          <div class="body-content">
+            <h2>Search and filter photos</h2>
+            <?php print render($page["filter_boxes"]); ?>
+        </div>
+    </section>
+    <?php endif; ?>
     <section id="main-content-strip" class="container-3">
         <div class='container-2'>
             <div class='container-1'>
