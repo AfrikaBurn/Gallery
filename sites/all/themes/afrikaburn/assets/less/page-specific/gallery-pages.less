@@ -153,10 +153,8 @@ section.filters .flex-box aside {
 }
 
 section.filters .close-button {
-  height: 50px;
-  width: 50px;
-  border: 2px solid #fff;
-  border-width: 0;
+  height: 60px;
+  width: 60px;
   float: right;
   margin: 20px 20px 0 0;
   .border-radius(@radiusSize: 50%);
@@ -164,16 +162,18 @@ section.filters .close-button {
   text-transform: none;
   background: transparent;
   font-size: 30px;
-  padding: 0;
+  padding: 13px;
+  box-sizing: border-box;
 
   svg {
     fill: #fff;
+    display: block;
   }
 }
 
 section.filters .close-button:hover {
   cursor: pointer;
-  border-color: @ab-peach;
+  border: 2px solid @ab-peach;
   color: @ab-peach;
 
 }
