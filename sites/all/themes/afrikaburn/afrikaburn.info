@@ -21,7 +21,6 @@ regions[user-menu] = User menu
 regions[main-menu] = Main menu
 regions[content] = Content
 regions[login_box] = Login Box
-regions[sidebar] = Sidebar
 regions[social] = Social Icons
 regions[copyright] = Copyright
 regions[footer_left] = Footer Left

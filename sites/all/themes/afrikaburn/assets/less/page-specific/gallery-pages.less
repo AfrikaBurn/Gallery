@@ -106,23 +106,16 @@ div.fancybox-container button:hover {
   cursor: pointer;
 }
 
-section.filters {
-  position: fixed;
-  display: none;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 10;
+div.filters {
   background: #222;
-  overflow-y: scroll;
+  padding: 15px;
+  margin-bottom: 30px;
 }
 
-section.filters.show {
-  display: block;
-}
-
-section.filters  aside {
+div.filters aside {
+  h2 {
+    font-size: 1em;
+  }
   ul li {
     list-style: none;
     padding: 5px 0;
@@ -139,11 +132,11 @@ section.filters  aside {
   }
 }
 
-section.filters aside.filter-active {
+div.filters aside.filter-active {
   border: 1px solid @ab-peach;
 }
 
-section.filters .flex-box aside {
+div.filters .flex-box aside {
   margin: 10px;
   padding: 10px 40px 10px 20px;
   background: #111;
@@ -152,46 +145,20 @@ section.filters .flex-box aside {
   overflow-y: scroll;
 }
 
-section.filters .close-button {
-  height: 60px;
-  width: 60px;
-  float: right;
-  margin: 20px 20px 0 0;
-  .border-radius(@radiusSize: 50%);
-  font-family: Verdana;
-  text-transform: none;
-  background: transparent;
-  font-size: 30px;
-  padding: 13px;
-  box-sizing: border-box;
-
-  svg {
-    fill: #fff;
-    display: block;
-  }
-}
-
-section.filters .close-button:hover {
-  cursor: pointer;
-  border: 2px solid @ab-peach;
-  color: @ab-peach;
-
-}
-
-section.filters .views-exposed-widget {
+div.filters .views-exposed-widget {
   padding-top: 0;
 }
 
-section.filters .views-exposed-widget input#edit-submit-search {
+div.filters .views-exposed-widget input#edit-submit-search {
   margin-top: 0;
 }
 
-section.filters .views-widget input#edit-search-api-views-fulltext {
+div.filters .views-widget input#edit-search-api-views-fulltext {
   height: 40px;
   margin-top: 0;
 }
 
-section.filters div.filters-active-text {
+div.filters div.filters-active-text {
   color: @ab-peach;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -209,21 +176,6 @@ section.filters div.filters-active-text {
   display: flex;
   flex-wrap: wrap;
   margin: -10px;
-}
-
-div.body-content button.toggle-filters {
-  display: none;
-  height: 50px;
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-  display: block;
-  margin-bottom: 30px;
-  float: none;
-}
-
-body.page-browse-search button.toggle-filters {
-  display: block;
 }
 
 .filters-header {

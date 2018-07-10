@@ -135,18 +135,9 @@ jQuery(document).ready(function() {
     })
   });
 
-  // Toggle the filter boxes on the search page.
-  jQuery('button.toggle-filters').click(function(e) {
-    jQuery('section.filters').addClass('show');
-  });
-
-  // Toggle the filter boxes on the search page.
-  jQuery('button.close-button').click(function(e) {
-    jQuery('section.filters').removeClass('show');
-  });
 
 var categoryObjects = [];
-  jQuery.each(jQuery('section.filters aside'), function(categoryIndex, filterBox) {
+  jQuery.each(jQuery('div.filters aside'), function(categoryIndex, filterBox) {
     var thisObject = {
       "values": [],
     }
@@ -201,6 +192,7 @@ var categoryObjects = [];
       var thisFilterObject = activeFiltersJSON.find(function(item) {
         return item.name === categoryName;
       });
+      if (!thisFilterObject) {return;}
       sentenceSnippets.push(thisFilterObject.preposition);
       var itemsList = thisFilterObject.values;
 
@@ -223,7 +215,7 @@ var categoryObjects = [];
     });
     sentenceSnippets.push(".");
     var filtersHeader = `<div class="filters-header">${sentenceSnippets.join("")}</div>`;
-    jQuery("button.toggle-filters").before(filtersHeader);
+    jQuery("div.filters").before(filtersHeader);
   }
 
   var facetAPIElements = jQuery('.filters .block-facetapi').wrapAll("<div class='flex-box'></div>");

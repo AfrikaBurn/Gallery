@@ -6,13 +6,15 @@ body.user-logged-in .tabs.secondary {
     display: none;
 }
 
-.tabs ul {
-	margin: 0 0 20px -5px;
-	width: 100%;
-	float: left;
-	clear: both;
+div.tabs {
+	text-align: center;
 }
-nav.tabs ul li {
+
+div.tabs ul {
+
+	display: inline-block;
+}
+div.tabs ul li {
 	display: block;
 	float: left;
 	padding: 0;
@@ -20,11 +22,11 @@ nav.tabs ul li {
 	vertical-align: bottom;
 }
 
-nav.tabs ul li.is-active {
+div.tabs ul li.is-active {
 	display: none;
 }
 
-nav.tabs ul li a {
+div.tabs ul li a {
 	background-color: @ab-peach;
 	border-radius: 10px;
   -moz-border-radius: 10px;
@@ -39,16 +41,16 @@ nav.tabs ul li a {
 	text-decoration: none;
 }
 
-nav.tabs ul li a:hover {
+div.tabs ul li a:hover {
 	background-color: #AF282E;
 	color: #fff;
 	text-decoration: none;
 }
 
-nav.tabs ul.secondary li a {
+div.tabs ul.secondary li a {
 	background-color: @ab-maroon;
 }
 
-nav.tabs ul.secondary li a:hover {
+div.tabs ul.secondary li a:hover {
 	background-color: lighten(@ab-maroon, 10%);
 }
