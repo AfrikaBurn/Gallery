@@ -141,8 +141,8 @@ div.filters .flex-box aside {
   padding: 10px 40px 10px 20px;
   background: #111;
   .border-radius(@radiusSize: 3px);
-  max-height: 300px;
-  overflow-y: scroll;
+  max-height: 350px;
+  overflow-y: auto;
 }
 
 div.filters .views-exposed-widget {
@@ -189,5 +189,16 @@ div.filters div.filters-active-text {
 
 .filters-header span.filter-name {
   color: @ab-peach;
+}
+
+div.body-content ul.pager {
+  margin-top: 15px;
+  li {
+    margin-left: 0;
+    padding-left: 0;
+    margin-right: 20px;
+  } a {
+    text-decoration: none;
+  }
 }
 
