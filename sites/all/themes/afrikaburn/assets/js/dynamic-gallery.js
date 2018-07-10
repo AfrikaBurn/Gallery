@@ -18,7 +18,6 @@ jQuery(document).ready(function() {
   var tables = jQuery(mainContentHTML).find('table');
   var header = jQuery(mainContentHTML).find('h3').text();
 
-
   // Add the gallery element to the page.
   var galleryElement =
   `
@@ -29,7 +28,7 @@ jQuery(document).ready(function() {
   jQuery('#main-content-strip .body-content').append(pager);
 
   var galleryElements = [];
-
+  console.log(tables);
   jQuery.each(tables, function(index, table) {
     galleryElements.push({
       "type": "header",
@@ -192,10 +191,10 @@ var categoryObjects = [];
     }
     categoryObjects.push(thisObject);
   });
-  setFIltersOverview(categoryObjects);
+  setFiltersOverview(categoryObjects);
 
 
-  function setFIltersOverview(activeFiltersJSON) {
+  function setFiltersOverview(activeFiltersJSON) {
     sentenceCategoriesOrder = ["photographer", "year", "event", "search"];
     var sentenceSnippets = ["Showing images "];
     jQuery.each(sentenceCategoriesOrder, function(index, categoryName) {
@@ -227,5 +226,6 @@ var categoryObjects = [];
     jQuery("button.toggle-filters").before(filtersHeader);
   }
 
+  var facetAPIElements = jQuery('.filters .block-facetapi').wrapAll("<div class='flex-box'></div>");
 
 });

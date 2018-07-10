@@ -203,7 +203,6 @@ section.filters div.filters-active-text {
     width: 20px;
     margin-right: 7px;
   }
-
 }
 
 .flex-box {
@@ -212,13 +211,19 @@ section.filters div.filters-active-text {
   margin: -10px;
 }
 
-body.page-browse-search button.toggle-filters {
+div.body-content button.toggle-filters {
+  display: none;
   height: 50px;
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   margin: 0 auto;
   display: block;
   margin-bottom: 30px;
   float: none;
+}
+
+body.page-browse-search button.toggle-filters {
+  display: block;
 }
 
 .filters-header {
