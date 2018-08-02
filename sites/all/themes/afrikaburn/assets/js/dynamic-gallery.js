@@ -14,7 +14,7 @@ jQuery(document).ready(function() {
 
   var mainContentText = jQuery('noscript').text();
   var mainContentHTML = jQuery.parseHTML(mainContentText);
-  var pager = jQuery(mainContentHTML).find('ul.pager');
+  var pager = jQuery(mainContentHTML).find('ul.pager').css('display', 'none');
   var tables = jQuery(mainContentHTML).find('table');
   var header = jQuery(mainContentHTML).find('h3').text();
 
@@ -23,12 +23,11 @@ jQuery(document).ready(function() {
   `
   <div class="image-gallery" data-thumbnail-dimensions="5:4"></div>
   <div class="clr"></div>
-  <div class="load-more-images"><div class="loader"></div></div>`
+  <div class="load-more-images"><div class="spinner"></div></div>`
   jQuery('#main-content-strip .body-content').append(galleryElement);
   jQuery('#main-content-strip .body-content').append(pager);
 
   var galleryElements = [];
-  console.log(tables);
   jQuery.each(tables, function(index, table) {
     galleryElements.push({
       "type": "header",
@@ -62,10 +61,10 @@ jQuery(document).ready(function() {
       jQuery('.image-gallery').append(element);
       jQuery('.image-gallery').find('h3:first').css('display', 'block');
     });
-    loadImageBatch('from generateInitialMarkup');
+    loadImageBatch();
   }
 
-  function loadImageBatch(test) {
+  function loadImageBatch() {
     jQuery('#footer').css('display', 'none');
     galleryItems = jQuery("a.gallery-thumbnail");
     totalImagesInGallery = galleryItems.length;
@@ -97,6 +96,7 @@ jQuery(document).ready(function() {
         if (totalImagesLoaded === totalImagesInGallery) {
           jQuery(".load-more-images").css("display", "none");
           jQuery('#footer').css('display', 'block');
+          jQuery('ul.pager').css('display', 'flex');
         }
       });
     });
