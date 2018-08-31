@@ -1,31 +1,36 @@
 /*---Site template files---*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600);
+@import (less) "../_variables/variables-colour-definitions";
+@import (less) "../_variables/variables-basic-elements";
+@import (less) "../_variables/variables-layout-generic";
+@import (less) "../_variables/variables-main-nav-desktop";
+@import (less) "../_variables/variables-main-nav-mobile";
+@import (less) "../_variables/variables-user-greeting";
+@import (less) "../_mixins/mixins";
 
-@import (less) "../00-variables/variables-bits-and-pieces";
-@import (less) "../00-variables/variables-general-site-layout";
-@import (less) "../00-variables/variables-bootstrap-navbar-pc";
-@import (less) "../00-variables/variables-bootstrap-navbar-979";
-@import (less) "../00-variables/variables-user-greeting";
-@import (less) "../00-variables/variables-search-field";
-@import (less) "../00-variables/00-variables-k2-cat-list-blog.less";
-@import (less) "../00-variables/00-variables-k2-content-module";
+@import (less) "../basic-elements";
+@import (less) "../layout/layout-generic";
+@import (less) "../layout/user-greeting";
+@import (less) "../layout/collectives-popout";
+@import (less) "../layout/main-nav/main-nav-general";
+@import (less) "../layout/main-nav/main-nav-desktop";
+@import (less) "../layout/main-nav/main-nav-mobile";
+//Not required in the event of a redesign:
+@import (less) "../layout/layout-customisations";
 
-@import (less) "../general/all-widths/general-site-layout";
-@import (less) "../general/all-widths/bits-and-pieces";
-@import (less) "../general/all-widths/zz-text-inheritance";
-@import (less) "../general/all-widths/bootstrap-navbar-pc";
-@import (less) "../general/all-widths/zz-user-greeting";
-@import (less) "../general/all-widths/zz-social-media-links";
-@import (less) "../general/all-widths/zz-search-field";
-@import (less) "../general/all-widths/zz-login-block";
-@import (less) "../general/all-widths/bootstrap-navbar-pc-level-3";
-@import (less) "../general/all-widths/zz-system-generated-extras";
-@import (less) "../general/mobile/bootstrap-navbar-979";
-@import (less) "../general/mobile/979px-and-below";
-@import (less) "../general/mobile/767px-and-below";
-@import (less) "../general/mobile/667px-and-below";
-@import (less) "../general/mobile/599px-and-below";
-@import (less) "../general/mobile/479px-and-below";
-@import (less) "../general/mobile/379px-and-below";
-@import (less) "../general/mobile/322px-and-below";
+@import (less) "../drupal-widgets/system-messages";
+@import (less) "../drupal-widgets/dropbutton";
+@import (less) "../drupal-widgets/auto-complete-field";
+@import (less) "../drupal-widgets/accordions";
+@import (less) "../drupal-widgets/drupal-action-tabs";
+@import (less) "../drupal-widgets/auto-complete-field";
+@import (less) "../drupal-form-fields/form-field-specific";
+@import (less) "../drupal-core-style-overrides/miscellaneous-overrides";
+@import (less) "../dependencies/fancybox.less";
 
-@import (less) "../page-specific/miscellaneous-custom-styles";
+@import (less) "../page-specific/home";
+@import (less) "../page-specific/gallery-pages";
+@import (less) "../page-specific/community-pages";
+@import (less) "../page-specific/add-edit-grant-pages";
+@import (less) "../page-specific/photographers-page";
+@import (less) "../temp";
