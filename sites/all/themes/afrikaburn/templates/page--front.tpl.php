@@ -235,7 +235,7 @@
             <div class='clr'></div>
         </div>
     </div>
-    <section id="main-content-strip" class="container-3">
+    <section id="main-content-strip" class="container-3 page-front">
         <div class='container-2'>
             <div class='container-1'>
                     <?php print render($title_prefix); ?>
@@ -265,7 +265,6 @@
             <div class='container-1'>
                 <h2>Volunteer now!</h2>
                 <div class='body-content'>
-
                     <div class="blocks-container footer three-column">
                         <div class='block-outer'>
                             <div class='block-inner'>
