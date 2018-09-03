@@ -50,21 +50,21 @@
       <?php print $attachment_before; ?>
     </div>
   <?php endif; ?>
+  <noscript>
+    <?php if ($rows): ?>
+      <div class="view-content">
+        <?php print $rows; ?>
+      </div>
+    <?php elseif ($empty): ?>
+      <div class="view-empty">
+        <?php print $empty; ?>
+      </div>
+    <?php endif; ?>
 
-  <?php if ($rows): ?>
-    <div class="view-content">
-      <noscript><?php print $rows; ?></noscript>
-    </div>
-  <?php elseif ($empty): ?>
-    <div class="view-empty">
-      <?php print $empty; ?>
-    </div>
-  <?php endif; ?>
-
-  <?php if ($pager): ?>
-    <?php print $pager; ?>
-  <?php endif; ?>
-
+    <?php if ($pager): ?>
+      <?php print $pager; ?>
+    <?php endif; ?>
+  </noscript>
   <?php if ($attachment_after): ?>
     <div class="attachment attachment-after">
       <?php print $attachment_after; ?>

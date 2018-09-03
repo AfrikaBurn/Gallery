@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
-  var asteriskSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.7 36.6" class="single-colour icon-asterisk"><path d="M0 17.2l2.7-8.3c6.2 2.2 10.7 4.1 13.5 5.7C15.5 7.5 15.1 2.7 15.1 0h8.5c-0.1 3.9-0.6 8.7-1.3 14.5 4-2 8.6-3.9 13.8-5.6l2.7 8.3c-5 1.6-9.8 2.7-14.6 3.3 2.4 2.1 5.7 5.8 10.1 11.1l-7 5c-2.3-3.1-4.9-7.3-8-12.6 -2.9 5.5-5.4 9.7-7.6 12.6l-6.9-5c4.5-5.6 7.8-9.3 9.7-11.1C9.3 19.5 4.5 18.4 0 17.2z"/></svg>`;
-  var curvedArrowSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.3 31.4" class="single-colour curved-arrow-right"><path d="M35.3 22.8l-14.9-8.6v6.5H11c-3.9 0-7-3.1-7-7V0H0v13.7c0 6.1 4.9 11 11 11h9.5v6.7L35.3 22.8z"/></svg>`;
-  var crossSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34.3 34.3" class="single-colour cross"><path class="st0" d="M21.4 17.1l12-12c1.2-1.2 1.2-3.1 0-4.2 -1.2-1.2-3.1-1.2-4.2 0l-12 12 -12-12C4-0.3 2-0.3 0.9 0.9c-1.2 1.2-1.2 3.1 0 4.2l12 12 -12 12c-1.2 1.2-1.2 3.1 0 4.2C1.5 34 2.2 34.3 3 34.3s1.5-0.3 2.1-0.9l12-12 12 12c0.6 0.6 1.4 0.9 2.1 0.9s1.5-0.3 2.1-0.9c1.2-1.2 1.2-3.1 0-4.2L21.4 17.1z"/></svg>`;
+  var asteriskSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.7 36.6" class="single-colour icon-asterisk"><path d="M0 17.2l2.7-8.3c6.2 2.2 10.7 4.1 13.5 5.7C15.5 7.5 15.1 2.7 15.1 0h8.5c-0.1 3.9-0.6 8.7-1.3 14.5 4-2 8.6-3.9 13.8-5.6l2.7 8.3c-5 1.6-9.8 2.7-14.6 3.3 2.4 2.1 5.7 5.8 10.1 11.1l-7 5c-2.3-3.1-4.9-7.3-8-12.6 -2.9 5.5-5.4 9.7-7.6 12.6l-6.9-5c4.5-5.6 7.8-9.3 9.7-11.1C9.3 19.5 4.5 18.4 0 17.2z"/></svg>';
+  var curvedArrowSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.3 31.4" class="single-colour curved-arrow-right"><path d="M35.3 22.8l-14.9-8.6v6.5H11c-3.9 0-7-3.1-7-7V0H0v13.7c0 6.1 4.9 11 11 11h9.5v6.7L35.3 22.8z"/></svg>';
+  var crossSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34.3 34.3" class="single-colour cross"><path class="st0" d="M21.4 17.1l12-12c1.2-1.2 1.2-3.1 0-4.2 -1.2-1.2-3.1-1.2-4.2 0l-12 12 -12-12C4-0.3 2-0.3 0.9 0.9c-1.2 1.2-1.2 3.1 0 4.2l12 12 -12 12c-1.2 1.2-1.2 3.1 0 4.2C1.5 34 2.2 34.3 3 34.3s1.5-0.3 2.1-0.9l12-12 12 12c0.6 0.6 1.4 0.9 2.1 0.9s1.5-0.3 2.1-0.9c1.2-1.2 1.2-3.1 0-4.2L21.4 17.1z"/></svg>';
 
   jQuery('ul.pager').css('display', 'none');
   var currentlyLoadingImages = false;
@@ -14,22 +14,16 @@ jQuery(document).ready(function() {
 
   var mainContentText = jQuery('noscript').text();
   var mainContentHTML = jQuery.parseHTML(mainContentText);
-  var pager = jQuery(mainContentHTML).find('ul.pager');
+  var pager = jQuery(mainContentHTML).find('ul.pager').css('display', 'none');
   var tables = jQuery(mainContentHTML).find('table');
   var header = jQuery(mainContentHTML).find('h3').text();
 
-
   // Add the gallery element to the page.
-  var galleryElement =
-  `
-  <div class="image-gallery" data-thumbnail-dimensions="5:4"></div>
-  <div class="clr"></div>
-  <div class="load-more-images"><div class="loader"></div></div>`
+  var galleryElement = '<div class="image-gallery" data-thumbnail-dimensions="5:4"></div><div class="clr"></div><div class="load-more-images"><div class="spinner"></div></div>'
   jQuery('#main-content-strip .body-content').append(galleryElement);
   jQuery('#main-content-strip .body-content').append(pager);
 
   var galleryElements = [];
-
   jQuery.each(tables, function(index, table) {
     galleryElements.push({
       "type": "header",
@@ -50,23 +44,21 @@ jQuery(document).ready(function() {
     jQuery.each(galleryElements, function(index, galleryElement) {
       var element;
       if (galleryElement.type === "header") {
-        element = `<h3 style='display: none'>${galleryElement.value}</h3>`
+        element = '<h3 style="display: none">' + galleryElement.value + '</h3>'
       } else if (galleryElement.type === "thumbnailUrl") {
         if (galleryElement.value) {
           var fullSizeImageUrl = galleryElement.value.replace('/sites/gallery.local/files/styles/node_gallery_thumbnail/public/node_gallery', '/sites/gallery.local/files/node_gallery');
-            element = `<a class='gallery-thumbnail' data-fancybox='gallery' href='${fullSizeImageUrl}' data-thumbmail-image='${galleryElement.value}'>
-          <div class='gallery-thumbnail-inner' style='background-image: none; display: none;'></div>
-          </a>`;
+            element = "<a class='gallery-thumbnail' data-fancybox='gallery' href='" + fullSizeImageUrl + "' data-thumbmail-image='" + galleryElement.value + "'><div class='gallery-thumbnail-inner' style='background-image: none; display: none;'></div></a>";
 
         }
       }
       jQuery('.image-gallery').append(element);
       jQuery('.image-gallery').find('h3:first').css('display', 'block');
     });
-    loadImageBatch('from generateInitialMarkup');
+    loadImageBatch();
   }
 
-  function loadImageBatch(test) {
+  function loadImageBatch() {
     jQuery('#footer').css('display', 'none');
     galleryItems = jQuery("a.gallery-thumbnail");
     totalImagesInGallery = galleryItems.length;
@@ -78,11 +70,11 @@ jQuery(document).ready(function() {
     jQuery.each(thisBatch, function(index, element) {
       var thumbnailElement = jQuery(this);
       var thumbnailPath = jQuery(this).attr("data-thumbmail-image");
-      thumbnailElement.children('.gallery-thumbnail-inner').css("background-image", `url(${thumbnailPath})`).css("display", "block");
+      thumbnailElement.children('.gallery-thumbnail-inner').css("background-image", 'url(' + thumbnailPath + ')').css("display", "block");
       setGalleryImageHeight(thumbnailElement);
       if (jQuery(this).next('h3').length > 0) {
         var bottomMargin = jQuery(this).next('h3').css('marginBottom');
-        jQuery(this).next('h3').attr('style', `display:block; margin-top: ${bottomMargin}; float: left; width: 100%`);
+        jQuery(this).next('h3').attr('style', 'display:block; margin-top: ' + bottomMargin + '; float: left; width: 100%');
       }
       // Create a fake image element in memory with src set to the thumbnail path, as this gives us a way to know when the image has finished loading.
       jQuery('<img/>').attr('src', thumbnailPath).on('load', function() {
@@ -98,6 +90,7 @@ jQuery(document).ready(function() {
         if (totalImagesLoaded === totalImagesInGallery) {
           jQuery(".load-more-images").css("display", "none");
           jQuery('#footer').css('display', 'block');
+          jQuery('ul.pager').css('display', 'flex');
         }
       });
     });
@@ -136,18 +129,9 @@ jQuery(document).ready(function() {
     })
   });
 
-  // Toggle the filter boxes on the search page.
-  jQuery('button.toggle-filters').click(function(e) {
-    jQuery('section.filters').addClass('show');
-  });
-
-  // Toggle the filter boxes on the search page.
-  jQuery('button.close-button').click(function(e) {
-    jQuery('section.filters').removeClass('show');
-  });
 
 var categoryObjects = [];
-  jQuery.each(jQuery('section.filters aside'), function(categoryIndex, filterBox) {
+  jQuery.each(jQuery('div.filters aside'), function(categoryIndex, filterBox) {
     var thisObject = {
       "values": [],
     }
@@ -176,7 +160,7 @@ var categoryObjects = [];
     var activeFilters = jQuery(filterBox).find('a.facetapi-active');
     var filterActive = activeFilters.length > 0;
     if (filterActive) {
-      jQuery(filterBox).find('h2').after(`<div class="filters-active-text">${asteriskSVG}Filter active<div class='clr'></div></div>`);
+      jQuery(filterBox).find('h2').after('<div class="filters-active-text">' + asteriskSVG + 'Filter active<div class="clr"></div></div>');
       jQuery.each(activeFilters, function(index, activeFilter) {
         jQuery(this).addClass('filter-active');
         var activeFilterText = jQuery(activeFilter).parent()
@@ -185,47 +169,49 @@ var categoryObjects = [];
         .remove()   //remove all the children
         .end()  //again go back to selected element
         .text();
-        thisObject.values.push(`<span class="filter-name">${activeFilterText}</span>`);
+        thisObject.values.push('<span class="filter-name">' + activeFilterText + '</span>');
         jQuery(activeFilter).text("Clear this filter");
         jQuery(this).parent().append(activeFilter);
       });
     }
     categoryObjects.push(thisObject);
   });
-  setFIltersOverview(categoryObjects);
+  setFiltersOverview(categoryObjects);
 
 
-  function setFIltersOverview(activeFiltersJSON) {
+  function setFiltersOverview(activeFiltersJSON) {
     sentenceCategoriesOrder = ["photographer", "year", "event", "search"];
     var sentenceSnippets = ["Showing images "];
     jQuery.each(sentenceCategoriesOrder, function(index, categoryName) {
       var thisFilterObject = activeFiltersJSON.find(function(item) {
         return item.name === categoryName;
       });
+      if (!thisFilterObject) {return;}
       sentenceSnippets.push(thisFilterObject.preposition);
       var itemsList = thisFilterObject.values;
 
       if (itemsList.length > 0) {
         console.log(itemsList);
         if (itemsList.length === 1) {
-          sentenceSnippets.push(` ${itemsList[0]}`);
+          sentenceSnippets.push(' ' + itemsList[0]);
         } else if (itemsList.length > 1) {
           var lastItem = itemsList.slice(itemsList.length -1);
           var allButLastItems = itemsList.slice(0, itemsList.length -1);
           sentenceSnippets.push(allButLastItems.join(", "));
-          sentenceSnippets.push(` and ${lastItem[0]}`);
+          sentenceSnippets.push(' and ' + lastItem[0]);
         }
 
       } else {
         if (thisFilterObject.name !== "search") {
-          sentenceSnippets.push(`<span class="filter-name">${thisFilterObject.showingAllText}</span>`);
+          sentenceSnippets.push('<span class="filter-name">' + thisFilterObject.showingAllText + '</span>');
         }
       }
     });
     sentenceSnippets.push(".");
-    var filtersHeader = `<div class="filters-header">${sentenceSnippets.join("")}</div>`;
-    jQuery("button.toggle-filters").before(filtersHeader);
+    var filtersHeader = '<div class="filters-header">' + sentenceSnippets.join("") + '</div>';
+    jQuery("div.filters").before(filtersHeader);
   }
 
+  var facetAPIElements = jQuery('.filters .block-facetapi').wrapAll("<div class='flex-box'></div>");
 
 });
