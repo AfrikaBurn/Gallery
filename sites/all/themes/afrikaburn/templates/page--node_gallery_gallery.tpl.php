@@ -246,8 +246,9 @@
                         <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
                         <?php print render($page['help']); ?>
                         <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-                        <p>Test</p>
-                        <noscript><?php print render($page['content']); ?> </noscript>
+                        <?php if($user->uid === 0): ?><noscript><?php endif; ?>
+                            <?php print render($page['content']); ?>
+                        <?php if($user->uid === 0): ?></noscript><?php endif; ?>
                         <?php print $feed_icons; ?>
                     </div>
                 <div class='clr'></div>
