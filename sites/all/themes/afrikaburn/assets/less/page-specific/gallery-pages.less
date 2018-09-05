@@ -3,18 +3,39 @@
 .image-gallery {
   display: flex;
   flex-wrap: wrap;
-  padding: 3px 3px 0 0;
+  padding: 5px 5px 0 0;
   h3 {
     width: 100%;
   }
 }
 
 .gallery-thumbnail-container {
-  background: #fff;
-  width: calc(20% - 3px);
-  float: left;
-  margin: 0 0 3px 3px;
+  background: #eee;
+  width: calc(20% - 5px);
+  margin: 0 0 5px 5px;
+  .thumbnail-tags {
+    box-sizing: border-box;
+    padding: 3px 7px;
+    ul {
+      margin: 0;
+      li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        line-height: 100%;
+        a {
+          margin-right: 7px;
+          display: inline-block;
+          font-size: 0.8em;
+          text-decoration: none;
+          color: #777;
+        }
+      }
+    }
+  }
 }
+
+
 
 .gallery-thumbnail {
   display: block;

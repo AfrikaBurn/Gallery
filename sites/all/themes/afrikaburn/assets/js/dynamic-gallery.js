@@ -1,4 +1,5 @@
 jQuery(document).ready(function() {
+
   var mainContentText = jQuery('noscript').text();
   var mainContentHTML = jQuery.parseHTML(mainContentText);
   if (jQuery(mainContentHTML).find('ul.pager').length === 0) {return;}
@@ -21,6 +22,7 @@ jQuery(document).ready(function() {
   var galleryElement = '<div class="image-gallery" data-thumbnail-dimensions="5:4"></div><div class="clr"></div><div class="load-more-images"><div class="spinner"></div></div>'
   jQuery('#main-content-strip .body-content').append(galleryElement);
   jQuery('#main-content-strip .body-content').append(pager);
+
   var galleryElements = [];
   jQuery.each(tables, function(index, table) {
     galleryElements.push({
@@ -43,8 +45,7 @@ jQuery(document).ready(function() {
       console.log(tagObjects);
       var tagElements = '';
       jQuery.each(tagObjects, function(index, tagObject) {
-        var tagElement = "<a href='" + tagObject.href + "'>" + tagObject.text + "</a>";
-
+        var tagElement = "<li><a href='" + tagObject.href + "'>" + tagObject.text + "</a></li>";
         tagElements += tagElement;
       });
       console.log(tagElements);
@@ -66,7 +67,7 @@ jQuery(document).ready(function() {
       } else if (galleryElement.type === "thumbnailUrl") {
         if (galleryElement.value) {
           var fullSizeImageUrl = galleryElement.value.replace('/sites/gallery.local/files/styles/node_gallery_thumbnail/public/node_gallery', '/sites/gallery.local/files/node_gallery');
-            element = "<div class='gallery-thumbnail-container' style='display: none;'><a class='gallery-thumbnail' data-fancybox='gallery' href='" + fullSizeImageUrl + "' data-thumbmail-image='" + galleryElement.value + "'><div class='gallery-thumbnail-inner' style='background-image: none;'></div></a>"  + galleryElement.tags + "</div>";
+            element = "<div class='gallery-thumbnail-container' style='display: none;'><a class='gallery-thumbnail' data-fancybox='gallery' href='" + fullSizeImageUrl + "' data-thumbmail-image='" + galleryElement.value + "'><div class='gallery-thumbnail-inner' style='background-image: none;'></div></a><div class='thumbnail-tags'><ul>"  + galleryElement.tags + "</ul></div></div>";
         }
       }
       jQuery('.image-gallery').append(element);
@@ -74,7 +75,9 @@ jQuery(document).ready(function() {
     });
     loadImageBatch();
   }
-
+  jQuery("[data-fancybox='gallery']").fancybox({
+    idleTime: 9999999
+  });
   function loadImageBatch() {
     function thumbnailRequestComplete() {
       // Remove the fake image element from memory as soon as it has finished downloading, so as not to waste memory.
@@ -103,14 +106,8 @@ jQuery(document).ready(function() {
     jQuery.each(thisBatch, function(index, element) {
       var thumbnailElement = jQuery(this);
       var thumbnailPath = jQuery(this).attr("data-thumbmail-image");
-      console.log(thumbnailPath);
       thumbnailElement.parent().css("display", "block");
       thumbnailElement.children('.gallery-thumbnail-inner').css("background-image", 'url(' + thumbnailPath + ')');
-      setGalleryImageHeight(thumbnailElement);
-      if (jQuery(this).parent().next('h3').length > 0) {
-        var bottomMargin = jQuery(this).next('h3').css('marginBottom');
-        jQuery(this).parent().next('h3').attr('style', 'display:block; margin-top: ' + bottomMargin + '; float: left; width: 100%');
-      }
       // Create a fake image element in memory with src set to the thumbnail path, as this gives us a way to know when the image has finished loading.
       jQuery('<img src="'+ thumbnailPath +'">').on('load', function(responseTxt) {
         thumbnailRequestComplete();
@@ -118,6 +115,11 @@ jQuery(document).ready(function() {
         thumbnailRequestComplete();
         jQuery(element).addClass('failed');
       });
+      setGalleryImageHeight(thumbnailElement);
+      if (jQuery(this).parent().next('h3').length > 0) {
+        var bottomMargin = jQuery(this).next('h3').css('marginBottom');
+        jQuery(this).parent().next('h3').attr('style', 'display:block; margin-top: ' + bottomMargin + '; float: left; width: 100%');
+      }
     });
   }
 
