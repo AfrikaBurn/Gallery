@@ -17,7 +17,6 @@ jQuery(document).ready(function() {
   var totalImagesLoaded = 0;
   var totalImagesInGallery;
   var galleryItems;
-  console.log(jQuery(tables).find('td a').wrap('div').parent().html());
   // Add the gallery element to the page.
   var galleryElement = '<div class="image-gallery" data-thumbnail-dimensions="5:4"></div><div class="clr"></div><div class="load-more-images"><div class="spinner"></div></div>'
   jQuery('#main-content-strip .body-content').append(galleryElement);
@@ -33,7 +32,6 @@ jQuery(document).ready(function() {
       var anchorElementsInCell = jQuery(row).find('a');
       var tagObjects = [];
       jQuery.each(anchorElementsInCell, function(index, anchor) {
-        console.log(index);
         if (jQuery(anchor).find('img').length === 0) {
           var tagObject = {
             'text': jQuery(anchor).html(),
@@ -42,13 +40,11 @@ jQuery(document).ready(function() {
           tagObjects.push(tagObject);
         }
       });
-      console.log(tagObjects);
       var tagElements = '';
       jQuery.each(tagObjects, function(index, tagObject) {
-        var tagElement = "<li><a href='" + tagObject.href + "'>" + tagObject.text + "</a></li>";
+        var tagElement = "<li><a href=" + tagObject.href + ">" + tagObject.text + "</a></li>";
         tagElements += tagElement;
       });
-      console.log(tagElements);
       galleryElements.push({
         "type": "thumbnailUrl",
         "value": jQuery(row).find('img').attr('src'),
@@ -66,8 +62,10 @@ jQuery(document).ready(function() {
         element = '<h3 style="display: none">' + galleryElement.value + '</h3>'
       } else if (galleryElement.type === "thumbnailUrl") {
         if (galleryElement.value) {
+          var options = JSON.stringify({"caption" : "<ul><li>Tags: </li>" + galleryElement.tags + "</ul>"});
+          console.log(options);
           var fullSizeImageUrl = galleryElement.value.replace('/sites/gallery.local/files/styles/node_gallery_thumbnail/public/node_gallery', '/sites/gallery.local/files/node_gallery');
-            element = "<div class='gallery-thumbnail-container' style='display: none;'><a class='gallery-thumbnail' data-fancybox='gallery' href='" + fullSizeImageUrl + "' data-thumbmail-image='" + galleryElement.value + "'><div class='gallery-thumbnail-inner' style='background-image: none;'></div></a><div class='thumbnail-tags'><ul>"  + galleryElement.tags + "</ul></div></div>";
+            element = "<div class='gallery-thumbnail-container' style='display: none;'><a class='gallery-thumbnail' data-fancybox='gallery' data-options='" + options + "' href='" + fullSizeImageUrl + "' data-thumbmail-image='" + galleryElement.value + "'><div class='gallery-thumbnail-inner' style='background-image: none;'></div></a><div class='thumbnail-tags'><ul>"  + galleryElement.tags + "</ul></div></div>";
         }
       }
       jQuery('.image-gallery').append(element);
@@ -76,7 +74,12 @@ jQuery(document).ready(function() {
     loadImageBatch();
   }
   jQuery("[data-fancybox='gallery']").fancybox({
-    idleTime: 9999999
+    idleTime: 9999999,
+    afterShow: function( instance, slide ) {
+      console.log(instance);
+      console.log(instance.currIndex)
+      console.log(slide);
+    }
   });
   function loadImageBatch() {
     function thumbnailRequestComplete() {
