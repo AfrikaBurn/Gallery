@@ -1,13 +1,23 @@
 
 /*My image gallery styles*/
 .image-gallery {
-  margin: -3px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3px 3px 0 0;
+  h3 {
+    width: 100%;
+  }
+}
+
+.gallery-thumbnail-container {
+  background: #fff;
+  width: calc(20% - 3px);
+  float: left;
+  margin: 0 0 3px 3px;
 }
 
 .gallery-thumbnail {
   display: block;
-  width: 20%;
-  float: left;
   cursor: pointer;
 }
 
@@ -17,8 +27,13 @@
   }
 }
 
+.gallery-thumbnail.failed .gallery-thumbnail-inner {
+  background-color: #000;
+//
+}
+
 .gallery-thumbnail-inner {
-  margin: 3px;
+
   background-size: cover;
   background-position: center center;
   background-color: #eee;

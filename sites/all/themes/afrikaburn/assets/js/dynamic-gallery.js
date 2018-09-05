@@ -1,7 +1,6 @@
 jQuery(document).ready(function() {
   var mainContentText = jQuery('noscript').text();
   var mainContentHTML = jQuery.parseHTML(mainContentText);
-  console.log(jQuery(mainContentHTML).find('ul.pager'));
   if (jQuery(mainContentHTML).find('ul.pager').length === 0) {return;}
   var pager = jQuery(mainContentHTML).find('ul.pager').css('display', 'none');
   var tables = jQuery(mainContentHTML).find('table');
@@ -17,12 +16,11 @@ jQuery(document).ready(function() {
   var totalImagesLoaded = 0;
   var totalImagesInGallery;
   var galleryItems;
-
+  console.log(jQuery(tables).find('td a').wrap('div').parent().html());
   // Add the gallery element to the page.
   var galleryElement = '<div class="image-gallery" data-thumbnail-dimensions="5:4"></div><div class="clr"></div><div class="load-more-images"><div class="spinner"></div></div>'
   jQuery('#main-content-strip .body-content').append(galleryElement);
   jQuery('#main-content-strip .body-content').append(pager);
-
   var galleryElements = [];
   jQuery.each(tables, function(index, table) {
     galleryElements.push({
@@ -30,14 +28,34 @@ jQuery(document).ready(function() {
       "value": jQuery(table).prev().text()
     });
     jQuery.each(jQuery(table).find('td'), function(index, row) {
+      var anchorElementsInCell = jQuery(row).find('a');
+      var tagObjects = [];
+      jQuery.each(anchorElementsInCell, function(index, anchor) {
+        console.log(index);
+        if (jQuery(anchor).find('img').length === 0) {
+          var tagObject = {
+            'text': jQuery(anchor).html(),
+            'href': jQuery(anchor).attr('href')
+          }
+          tagObjects.push(tagObject);
+        }
+      });
+      console.log(tagObjects);
+      var tagElements = '';
+      jQuery.each(tagObjects, function(index, tagObject) {
+        var tagElement = "<a href='" + tagObject.href + "'>" + tagObject.text + "</a>";
+
+        tagElements += tagElement;
+      });
+      console.log(tagElements);
       galleryElements.push({
         "type": "thumbnailUrl",
-        "value": jQuery(row).find('img').attr('src')
+        "value": jQuery(row).find('img').attr('src'),
+        "tags": tagElements
       });
     });
   });
   generateInitialMarkup(galleryElements);
-
 
   function generateInitialMarkup(galleryElements) {
     var allImageElements = [];
@@ -48,8 +66,7 @@ jQuery(document).ready(function() {
       } else if (galleryElement.type === "thumbnailUrl") {
         if (galleryElement.value) {
           var fullSizeImageUrl = galleryElement.value.replace('/sites/gallery.local/files/styles/node_gallery_thumbnail/public/node_gallery', '/sites/gallery.local/files/node_gallery');
-            element = "<a class='gallery-thumbnail' data-fancybox='gallery' href='" + fullSizeImageUrl + "' data-thumbmail-image='" + galleryElement.value + "'><div class='gallery-thumbnail-inner' style='background-image: none; display: none;'></div></a>";
-
+            element = "<div class='gallery-thumbnail-container' style='display: none;'><a class='gallery-thumbnail' data-fancybox='gallery' href='" + fullSizeImageUrl + "' data-thumbmail-image='" + galleryElement.value + "'><div class='gallery-thumbnail-inner' style='background-image: none;'></div></a>"  + galleryElement.tags + "</div>";
         }
       }
       jQuery('.image-gallery').append(element);
@@ -67,8 +84,8 @@ jQuery(document).ready(function() {
       if (imagesLoaded === batchSize) {
         currentlyLoadingImages = false;
         iteration ++;
-          checkLoad();
-        }
+        checkLoad();
+      }
       if (totalImagesLoaded === totalImagesInGallery) {
         jQuery(".load-more-images").css("display", "none");
         jQuery('#footer').css('display', 'block');
@@ -87,11 +104,12 @@ jQuery(document).ready(function() {
       var thumbnailElement = jQuery(this);
       var thumbnailPath = jQuery(this).attr("data-thumbmail-image");
       console.log(thumbnailPath);
-      thumbnailElement.children('.gallery-thumbnail-inner').css("background-image", 'url(' + thumbnailPath + ')').css("display", "block");
+      thumbnailElement.parent().css("display", "block");
+      thumbnailElement.children('.gallery-thumbnail-inner').css("background-image", 'url(' + thumbnailPath + ')');
       setGalleryImageHeight(thumbnailElement);
-      if (jQuery(this).next('h3').length > 0) {
+      if (jQuery(this).parent().next('h3').length > 0) {
         var bottomMargin = jQuery(this).next('h3').css('marginBottom');
-        jQuery(this).next('h3').attr('style', 'display:block; margin-top: ' + bottomMargin + '; float: left; width: 100%');
+        jQuery(this).parent().next('h3').attr('style', 'display:block; margin-top: ' + bottomMargin + '; float: left; width: 100%');
       }
       // Create a fake image element in memory with src set to the thumbnail path, as this gives us a way to know when the image has finished loading.
       jQuery('<img src="'+ thumbnailPath +'">').on('load', function(responseTxt) {

@@ -63,7 +63,7 @@ function toggleContactForm(clickedElement) {
 
 
 $(document).ready(function() {
-  	radioCheckBoxWrapper();
+  	// radioCheckBoxWrapper();
   	inputTypeFile();
   	$("a.back-to-top-button").attr("href","javascript: void(0)");
   	$("input:file").change(function() {

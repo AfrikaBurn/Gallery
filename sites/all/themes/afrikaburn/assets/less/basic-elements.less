@@ -336,69 +336,22 @@ label {
 	font-weight: @body-content-form-label-font-weight;
 	line-height: 150%;
 	font-family: @main-font-family;
-	text-align: left;
-	display: table;
+  //
 }
 
 input[type='radio'],
 div.body-content input[type='radio'],
 input[type='checkbox'],
 div.body-content input[type='checkbox'] {
-	// width: @radio-button-checkbox-width-height !important;
-	// height: @radio-button-checkbox-width-height !important;
-	margin-right: 7px !important;
-	margin-top: @radio-button-checkbox-margin-top !important;
-	margin-bottom: 0;
-	float: left;
+	// margin-top: @radio-button-checkbox-margin-top !important;
+	// margin-bottom: 0;
+  padding: 0;
+  margin: 0 5px;
 }
 
-/*--Better styling for radio buttons--*/
-
-// div.radio-checkbox-wrapper {
-// 	position: relative;
-// 	float: left;
-// 	margin: @radio-button-checkbox-margin-top 5px 0 0;
-// }
-
-// div.radio-checkbox-wrapper input[type='radio'],
-// div.radio-checkbox-wrapper input[type='checkbox'] {
-// 	width: @radio-button-checkbox-width-height !important;
-// 	height: @radio-button-checkbox-width-height !important;
-// 	float: left;
-// 	opacity: 0;
-// 	position: absolute;
-// 	left: 0;
-// 	top: 0;
-// 	margin-top: 0 !important;
-// 	cursor: pointer;
-// }
-
-// input[type=radio] ~ div.radio-checkbox-dummy,
-// input[type=checkbox] ~ div.radio-checkbox-dummy {
-// 	float: left;
-// 	height: @radio-button-checkbox-width-height;
-// 	width: @radio-button-checkbox-width-height;
-// 	box-sizing: border-box;
-// 	border-radius: @input-border-radius;
-// 	-moz-border-radius: @input-border-radius;
-// 	-webkit-border-radius: @input-border-radius;
-// 	background: @radio-button-checkbox-background-color @radio-buttons-checkbox-background-image no-repeat center -10000000px;
-// 	border: @input-border-width @input-border-style @input-border-color;
-// 	background-size: @icons-sprite-background-size;
-// }
-
-// input[type=radio]:hover ~ div.radio-checkbox-dummy,
-// input[type=checkbox]:hover ~ div.radio-checkbox-dummy {
-// 	border-color: @input-hover-border-color;
-// 	background-color: @radio-button-checkbox-hover-background-color;
-// }
-
-// input[type=radio]:checked ~ div.radio-checkbox-dummy,
-// input[type=checkbox]:checked ~ div.radio-checkbox-dummy {
-// 	background-position: @radio-checkbox-selected-background-position;
-// 	border-color: @input-focus-border-color;
-// 	background-color: @radio-checkbox-selected-background-color;
-// }
+input[type='checkbox'] + label {
+  line-height: normal;
+}
 
 input[type=radio],
 input[type=checkbox] {
