@@ -9,6 +9,9 @@
     a {
       text-decoration: none;
     }
+    a:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -772,7 +775,12 @@ li.fancybox-thumbs-loading {
 .fancybox-thumbs > ul > li.fancybox-thumbs-active:before {
   opacity: 1; }
 
-
+@media (max-width: 910px) {
+  .fancybox-button--arrow_left,
+  .fancybox-button--arrow_right {
+    display: none;
+  }
+}
 
 /* Styling for Small-Screen Devices */
 @media all and (max-width: 800px) {
