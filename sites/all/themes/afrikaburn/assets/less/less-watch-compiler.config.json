@@ -1,0 +1,8 @@
+{
+  "watchFolder": "../less",
+  "outputFolder": "../css",
+  "mainFile": "theme.less",
+  "sourceMap": true,
+  "plugins": "less-plugin-clean-css,less-plugin-autoprefix='defaults'",
+  "runOnce": false
+}
