@@ -5,7 +5,11 @@
   flex-wrap: wrap;
   padding: 5px 5px 0 0;
   h3 {
+    margin-top: 10px;
     width: 100%;
+  }
+  h3:first-child {
+    margin-top: 0;
   }
 }
 
@@ -53,18 +57,20 @@
 .gallery-thumbnail {
   display: block;
   cursor: pointer;
+  background-color: #8c8c8c;
+  background-size: cover;
+  background-position: center center;
+  background-image: url('../images/gallery-thumbnail-placeholder.png');
 }
 
-
-
 .gallery-thumbnail.failed .gallery-thumbnail-inner {
-  background-color: #000;
+  background-color: #666;
+  background-image: url('../images/image-not-found.png') !important;
 }
 
 .gallery-thumbnail-inner {
   background-size: cover;
   background-position: center center;
-  background-color: #eee;
 }
 
 .fancybox-is-open .fancybox-bg {

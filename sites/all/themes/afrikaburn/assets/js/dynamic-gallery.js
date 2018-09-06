@@ -78,11 +78,12 @@ jQuery(document).ready(function() {
     idleTime: 9999999,
   });
   function loadImageBatch() {
-    function thumbnailRequestComplete() {
+    function thumbnailRequestComplete(fakeImage, thumbnailElement) {
       // Remove the fake image element from memory as soon as it has finished downloading, so as not to waste memory.
-      jQuery(this).remove();
+      jQuery(fakeImage).remove();
       imagesLoaded++;
       totalImagesLoaded ++;
+
       if (imagesLoaded === batchSize) {
         currentlyLoadingImages = false;
         iteration ++;
@@ -101,24 +102,28 @@ jQuery(document).ready(function() {
     var lastIndex = batchSize*iteration;
     var firstIndex = batchSize*iteration-batchSize;
     var thisBatch = galleryItems.slice(firstIndex, lastIndex);
+
     var imagesLoaded = 0;
     jQuery.each(thisBatch, function(index, element) {
       var thumbnailElement = jQuery(this);
+
+
       var thumbnailPath = jQuery(this).attr("data-thumbmail-image");
       thumbnailElement.parent().css("display", "block");
       thumbnailElement.children('.gallery-thumbnail-inner').css("background-image", 'url(' + thumbnailPath + ')');
       // Create a fake image element in memory with src set to the thumbnail path, as this gives us a way to know when the image has finished loading.
+      if (jQuery(thumbnailElement).parent().next('h3').length > 0) {
+        jQuery(thumbnailElement).parent().next('h3').attr('style', 'display:block');
+      }
       jQuery('<img src="'+ thumbnailPath +'">').on('load', function(responseTxt) {
-        thumbnailRequestComplete();
+        thumbnailRequestComplete(this, thumbnailElement);
       }).on('error', function(responseTxt) {
-        thumbnailRequestComplete();
+        thumbnailRequestComplete(this, thumbnailElement);
         jQuery(element).addClass('failed');
       });
       setGalleryImageHeight(thumbnailElement);
-      if (jQuery(this).parent().next('h3').length > 0) {
-        var bottomMargin = jQuery(this).next('h3').css('marginBottom');
-        jQuery(this).parent().next('h3').attr('style', 'display:block; margin-top: ' + bottomMargin + '; float: left; width: 100%');
-      }
+
+
     });
   }
 
