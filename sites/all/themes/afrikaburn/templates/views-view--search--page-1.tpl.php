@@ -26,8 +26,9 @@
  *
  * @ingroup views_templates
  */
+global $user;
 ?>
-<div class="<?php print $classes; ?>">
+<div class="<?php print $classes; ?> foo">
   <?php print render($title_prefix); ?>
   <?php if ($title): ?>
     <?php print $title; ?>
@@ -50,7 +51,7 @@
       <?php print $attachment_before; ?>
     </div>
   <?php endif; ?>
-  <noscript>
+  <?php if($user->uid === 0): ?><noscript><?php endif; ?>
     <?php if ($rows): ?>
       <div class="view-content">
         <?php print $rows; ?>
@@ -64,7 +65,7 @@
     <?php if ($pager): ?>
       <?php print $pager; ?>
     <?php endif; ?>
-  </noscript>
+  <?php if($user->uid === 0): ?></noscript><?php endif; ?>
   <?php if ($attachment_after): ?>
     <div class="attachment attachment-after">
       <?php print $attachment_after; ?>

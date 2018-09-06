@@ -36,8 +36,8 @@ function rotateImages() {
   var oNextPhoto = oCurrentPhoto.next("div.slide");
   if (oNextPhoto.length == 0)
     oNextPhoto = jQuery("div.slide:first");
-    
-  oCurrentPhoto.removeClass("current").addClass("previous");    
+
+  oCurrentPhoto.removeClass("current").addClass("previous");
   oNextPhoto.css({opacity: 0.0}).addClass("current")
     .animate({opacity: 1.0}, 2000,
       function() {
@@ -62,7 +62,7 @@ function toggleContactForm(clickedElement) {
 
 
 $(document).ready(function() {
-  	radioCheckBoxWrapper();
+  	// radioCheckBoxWrapper();
   	inputTypeFile();
   	$("a.back-to-top-button").attr("href","javascript: void(0)");
   	$("input:file").change(function() {
@@ -77,7 +77,12 @@ $(document).ready(function() {
 	$(function() {
 	  setInterval("rotateImages()", 5000);
 	});
-	
+
+   // Toggle the mobile menu.
+  jQuery("a.btn-navbar").click(function(e) {
+    jQuery(this).parent().parent().toggleClass('open');
+  })
+
 	$(".user-menu-icon").click(function(e) {
 		$(".user-menu").toggleClass("show");
 		$(this).toggleClass("active");
@@ -89,7 +94,7 @@ $(document).ready(function() {
 		var slug = href[href.length-1];
 	    $(this).addClass(slug);
 	})
-	
+
 
 	$(document).click(function(e) {
 	    $(".user-menu").removeClass("show");
@@ -110,14 +115,14 @@ $(document).ready(function() {
         	$('html,body').animate({scrollTop: scrollBarPosition}, 300);
 		}
 		$(this).toggleClass("open");
-		
-    }); 
+
+    });
 
     // var heading = $('.page-theme-camps-form-1-registered .views-row h1.field-content').text();
     // console.log(heading);
     // $('.page-theme-camps-form-1-registered .views-field-field-creative-lead label.views-label-field-creative-lead').text($(this).parent().parent()));
 
-	
+
 
 	$('.page-community .views-field-field-creative-lead > .field-content,' +
 		'.page-community .views-field-field-new-members-email > .field-content').addClass('hidden');
@@ -156,7 +161,7 @@ $(document).ready(function() {
 
 
 
-//Toggle visibility of the contact forms on the 
+//Toggle visibility of the contact forms on the
 
 
 
