@@ -11,8 +11,7 @@ jQuery(document).ready(function() {
 
   jQuery('ul.pager').css('display', 'none');
   var currentlyLoadingImages = false;
-  var batchSize = 20;
-  var iteration = 1;
+  var batchSize = 30;
   var totalImagesLoaded = 0;
   var totalImagesInGallery;
   var galleryItems;
@@ -78,15 +77,15 @@ jQuery(document).ready(function() {
     idleTime: 9999999,
   });
   function loadImageBatch() {
+    var endBatch;
     function thumbnailRequestComplete(fakeImage, thumbnailElement) {
       // Remove the fake image element from memory as soon as it has finished downloading, so as not to waste memory.
       jQuery(fakeImage).remove();
       imagesLoaded++;
       totalImagesLoaded ++;
 
-      if (imagesLoaded === batchSize) {
+      if (imagesLoaded === batchSize || jQuery(thumbnailElement).parent().next('h3').length > 0) {
         currentlyLoadingImages = false;
-        iteration ++;
         checkLoad();
       }
       if (totalImagesLoaded === totalImagesInGallery) {
@@ -99,22 +98,21 @@ jQuery(document).ready(function() {
     galleryItems = jQuery("a.gallery-thumbnail");
     totalImagesInGallery = galleryItems.length;
     currentlyLoadingImages = true;
-    var lastIndex = batchSize*iteration;
-    var firstIndex = batchSize*iteration-batchSize;
+    var lastIndex = totalImagesLoaded + batchSize;
+    var firstIndex = totalImagesLoaded;
     var thisBatch = galleryItems.slice(firstIndex, lastIndex);
-
     var imagesLoaded = 0;
     jQuery.each(thisBatch, function(index, element) {
+      if (endBatch) {return;}
       var thumbnailElement = jQuery(this);
-
-
+      if (jQuery(thumbnailElement).parent().next('h3').length > 0) {
+        jQuery(thumbnailElement).parent().next('h3').attr('style', 'display:block');
+        endBatch = true;
+      }
       var thumbnailPath = jQuery(this).attr("data-thumbmail-image");
       thumbnailElement.parent().css("display", "block");
       thumbnailElement.children('.gallery-thumbnail-inner').css("background-image", 'url(' + thumbnailPath + ')');
       // Create a fake image element in memory with src set to the thumbnail path, as this gives us a way to know when the image has finished loading.
-      if (jQuery(thumbnailElement).parent().next('h3').length > 0) {
-        jQuery(thumbnailElement).parent().next('h3').attr('style', 'display:block');
-      }
       jQuery('<img src="'+ thumbnailPath +'">').on('load', function(responseTxt) {
         thumbnailRequestComplete(this, thumbnailElement);
       }).on('error', function(responseTxt) {
