@@ -109,7 +109,7 @@
             <div class="container-1">
                 <div class='logo-container'>
                       <a href="http://www.afrikaburn.com">
-                          <img src="<?php print base_path() . path_to_theme(); ?>/assets/images/date-badge-2017.png" />
+                          <img src="<?php print base_path() . path_to_theme(); ?>/assets/images/date-badge-2019.png" />
                       </a>
                   </div>
             </div>
@@ -235,7 +235,7 @@
             <div class='clr'></div>
         </div>
     </div>
-    <section id="main-content-strip" class="container-3">
+    <section id="main-content-strip" class="container-3 gallery">
         <div class='container-2'>
             <div class='container-1'>
                     <?php print render($title_prefix); ?>
@@ -246,7 +246,9 @@
                         <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
                         <?php print render($page['help']); ?>
                         <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-                        <noscript><?php print render($page['content']); ?> </noscript>
+                        <?php if($user->uid === 0): ?><noscript><?php endif; ?>
+                            <?php print render($page['content']); ?>
+                        <?php if($user->uid === 0): ?></noscript><?php endif; ?>
                         <?php print $feed_icons; ?>
                     </div>
                 <div class='clr'></div>

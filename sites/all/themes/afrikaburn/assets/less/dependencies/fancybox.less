@@ -1,3 +1,19 @@
+.fancybox-caption ul {
+  text-align: center;
+  padding: 10px 0;
+  li {
+    color: #888;
+    list-style: none;
+    display: inline-block;
+    margin: 0 10px;
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}
 
 body.fancybox-active {
   overflow: hidden; }
@@ -425,17 +441,15 @@ body.fancybox-iosfix {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 60px 2vw 0 2vw;
+  padding: 20px 2vw 0 2vw;
   background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0.8) 100%);
-  pointer-events: none; }
+  pointer-events: none;
+}
 
 .fancybox-caption {
-  padding: 30px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
-  font-size: 14px;
-  color: #fff;
-  line-height: 20px;
-  -webkit-text-size-adjust: none; }
+  font-size: 1.4em;
+  border-top: 1px solid #444;
+}
 
 .fancybox-caption a,
 .fancybox-caption button,
@@ -760,6 +774,13 @@ li.fancybox-thumbs-loading {
 
 .fancybox-thumbs > ul > li.fancybox-thumbs-active:before {
   opacity: 1; }
+
+@media (max-width: 910px) {
+  .fancybox-button--arrow_left,
+  .fancybox-button--arrow_right {
+    display: none;
+  }
+}
 
 /* Styling for Small-Screen Devices */
 @media all and (max-width: 800px) {

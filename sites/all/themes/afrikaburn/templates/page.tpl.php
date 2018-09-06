@@ -110,7 +110,7 @@
             <div class="container-1">
                 <div class='logo-container'>
                       <a href="http://www.afrikaburn.com">
-                          <img src="<?php print base_path() . path_to_theme(); ?>/assets/images/date-badge-2017.png" />
+                          <img src="<?php print base_path() . path_to_theme(); ?>/assets/images/date-badge-2019.png" />
                       </a>
                 </div>
                 <?php print render($page['create-tickets']); ?>
@@ -247,7 +247,6 @@
                 	<?php if ($title): ?><h1><?php print $title; ?></h1><?php endif; ?>
                 	<?php print render($title_suffix); ?>
                     <div class="body-content">
-
                         <?php print $messages; ?>
                 		<?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
                         <?php print render($page['help']); ?>
