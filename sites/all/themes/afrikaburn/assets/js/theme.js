@@ -1,4 +1,3 @@
-console.log("Hello world");
 $(window).scroll(function() {
     var scrollHeight = $(window).scrollTop();
     if(scrollHeight  > 0) {
@@ -78,6 +77,11 @@ $(document).ready(function() {
 	$(function() {
 	  setInterval("rotateImages()", 5000);
 	});
+
+   // Toggle the mobile menu.
+  jQuery("a.btn-navbar").click(function(e) {
+    jQuery(this).parent().parent().toggleClass('open');
+  })
 
 	$(".user-menu-icon").click(function(e) {
 		$(".user-menu").toggleClass("show");

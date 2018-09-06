@@ -33,7 +33,6 @@ jQuery(document).ready(function() {
       var tagObjects = [];
       jQuery.each(anchorElementsInCell, function(index, anchor) {
         if (jQuery(anchor).find('img').length > 0 || jQuery(anchor).parent().hasClass('element-invisible') || jQuery(anchor).text().trim() === '') { return; }
-
         var tagObject = {
           'text': jQuery(anchor).text(),
           'href': jQuery(anchor).attr('href')

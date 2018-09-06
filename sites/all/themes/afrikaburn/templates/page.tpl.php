@@ -110,7 +110,7 @@
             <div class="container-1">
                 <div class='logo-container'>
                       <a href="http://www.afrikaburn.com">
-                          <img src="<?php print base_path() . path_to_theme(); ?>/assets/images/date-badge-2017.png" />
+                          <img src="<?php print base_path() . path_to_theme(); ?>/assets/images/date-badge-2019.png" />
                       </a>
                 </div>
                 <?php print render($page['create-tickets']); ?>
