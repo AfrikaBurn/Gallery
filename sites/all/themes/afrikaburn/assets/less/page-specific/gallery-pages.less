@@ -17,9 +17,16 @@
   background: #eee;
   width: calc(20% - 5px);
   margin: 0 0 5px 5px;
+  position: relative;
+  overflow: visible;
+
   .thumbnail-tags {
+    position: absolute;
+    z-index: 99999;
+    background: #eee;
     box-sizing: border-box;
     padding: 0 7px;
+    display: none;
     ul {
       margin: 3px 0;
       li {
@@ -38,6 +45,20 @@
           text-decoration: underline;
         }
       }
+    }
+  }
+}
+
+@media (min-width: 980px) {
+  .gallery-thumbnail-container:hover {
+    .gallery-thumbnail-inner {
+      box-sizing: border-box;
+      border: 2px solid #eee;
+      .box-shadow-bottom-right;
+    }
+
+    .thumbnail-tags {
+      display: block;
     }
   }
 }

@@ -64,7 +64,7 @@ jQuery(document).ready(function() {
         element = '<h3 style="display: none">' + galleryElement.value + '</h3>'
       } else if (galleryElement.type === "thumbnailUrl") {
         if (galleryElement.value) {
-          var options = JSON.stringify({"caption" : "<ul><li>Tags: </li>" + galleryElement.tags + "</ul>"});
+          var options = galleryElement.tags !== '' ? JSON.stringify({"caption" : "<ul><li>Tags: </li>" + galleryElement.tags + "</ul>"}) : null;
           var fullSizeImageUrl = galleryElement.value.replace('/sites/gallery.local/files/styles/node_gallery_thumbnail/public/node_gallery', '/sites/gallery.local/files/node_gallery');
             element = "<div class='gallery-thumbnail-container' style='display: none;'><a class='gallery-thumbnail' data-fancybox='gallery' data-options='" + options + "' href='" + fullSizeImageUrl + "' data-thumbmail-image='" + galleryElement.value + "'><div class='gallery-thumbnail-inner' style='background-image: none;'></div></a><div class='thumbnail-tags'>"  + tagsHTML + "</div></div>";
         }
