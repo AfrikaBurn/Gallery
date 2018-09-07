@@ -272,37 +272,37 @@ function node_gallery_api_manage_items_form($form, &$form_state, $gallery) {
   $form_state['programmed'] = FALSE;
   $form['#attached']['css'][] = drupal_get_path('module', 'node_gallery_api') . '/node_gallery_api.css';
 
-  $items = array();
-  if (isset($_SESSION['node_gallery_api_plupload_nids'][$gallery->nid])) {
-    foreach ($_SESSION['node_gallery_api_plupload_nids'][$gallery->nid] as $nid) {
-      $item = node_load($nid);
-      if (!empty($relationship_type->filefield_name)) {
-        $files = field_get_items('node', $item, $relationship_type->filefield_name);
-        if (!empty($files)) {
-          $item->node_gallery['item_file'] = $files[0];
-          $item->node_gallery['item_file_url'] = file_create_url($files[0]['uri']);
-        }
-      }
-      $items[] = $item;
-    }
-    // We trim the $images array to a max length to prevent
-    // OOM's on the manage images form.
-    // There's just no easy way to do paging for just one
-    // visit to the manage images tab.
-    drupal_set_message(t('Current display is filtered to show only images just uploaded.  Please refresh the page to display all images in the gallery.'), 'status');
-    $length = min(variable_get('node_gallery_api_plupload_manage_images_limit', 100), count($items));
-    $items = array_slice($items, 0, $length);
-    $chunks = array_chunk($items, count($items));
-    unset($_SESSION['node_gallery_api_plupload_nids'][$gallery->nid]);
-  }
-  else {
+  // $items = array();
+  // if (isset($_SESSION['node_gallery_api_plupload_nids'][$gallery->nid])) {
+  //   foreach ($_SESSION['node_gallery_api_plupload_nids'][$gallery->nid] as $nid) {
+  //     $item = node_load($nid);
+  //     if (!empty($relationship_type->filefield_name)) {
+  //       $files = field_get_items('node', $item, $relationship_type->filefield_name);
+  //       if (!empty($files)) {
+  //         $item->node_gallery['item_file'] = $files[0];
+  //         $item->node_gallery['item_file_url'] = file_create_url($files[0]['uri']);
+  //       }
+  //     }
+  //     $items[] = $item;
+  //   }
+  //   // We trim the $images array to a max length to prevent
+  //   // OOM's on the manage images form.
+  //   // There's just no easy way to do paging for just one
+  //   // visit to the manage images tab.
+  //   drupal_set_message(t('Current display is filtered to show only images just uploaded.  Please refresh the page to display all images in the gallery.'), 'status');
+  //   $length = min(variable_get('node_gallery_api_plupload_manage_images_limit', 100), count($items));
+  //   $items = array_slice($items, 0, $length);
+  //   $chunks = array_chunk($items, count($items));
+  //   unset($_SESSION['node_gallery_api_plupload_nids'][$gallery->nid]);
+  // }
+  // else {
     // $images = node_gallery_api_get_item_nids($gallery->nid, TRUE, FALSE);
     $items = node_gallery_api_get_items($gallery, TRUE, FALSE);
     if (!empty($items)) {
       $chunks = array_chunk($items, $items_per_page);
       $items = $chunks[$pager_page_array[$element]];
     }
-  }
+  // }
   if (empty($items)) {
     return $form;
   }
