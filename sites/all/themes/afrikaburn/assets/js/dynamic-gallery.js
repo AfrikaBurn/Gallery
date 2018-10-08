@@ -40,6 +40,7 @@ jQuery(document).ready(function() {
       });
       var tagElements = '';
       jQuery.each(tagObjects, function(index, tagObject) {
+
         var tagElement = "<li><a href=" + tagObject.href + ">" + tagObject.text + "</a></li>";
         tagElements += tagElement;
       });
@@ -63,7 +64,7 @@ jQuery(document).ready(function() {
         element = '<h3 style="display: none">' + galleryElement.value + '</h3>'
       } else if (galleryElement.type === "thumbnailUrl") {
         if (galleryElement.value) {
-          var options = JSON.stringify({"caption" : "<ul><li>Tags: </li>" + galleryElement.tags + "</ul>"});
+          var options = galleryElement.tags !== '' ? JSON.stringify({"caption" : "<ul><li>Tags: </li>" + galleryElement.tags + "</ul>"}) : null;
           var fullSizeImageUrl = galleryElement.value.replace('/sites/gallery.local/files/styles/node_gallery_thumbnail/public/node_gallery', '/sites/gallery.local/files/node_gallery');
             element = "<div class='gallery-thumbnail-container' style='display: none;'><a class='gallery-thumbnail' data-fancybox='gallery' data-options='" + options + "' href='" + fullSizeImageUrl + "' data-thumbmail-image='" + galleryElement.value + "'><div class='gallery-thumbnail-inner' style='background-image: none;'></div></a><div class='thumbnail-tags'>"  + tagsHTML + "</div></div>";
         }
@@ -187,6 +188,10 @@ var categoryObjects = [];
         thisObject.name = "event";
         thisObject.preposition = " at ";
         thisObject.showingAllText = " all Afrikaburn related events";
+      } else if (headerText.indexOf("tags") > -1) {
+        thisObject.name = "tags";
+        thisObject.preposition = " tagged as ";
+        thisObject.showingAllText = null;
       }
     }
     var activeFilters = jQuery(filterBox).find('a.facetapi-active');
@@ -208,42 +213,6 @@ var categoryObjects = [];
     }
     categoryObjects.push(thisObject);
   });
-  setFiltersOverview(categoryObjects);
-
-
-  function setFiltersOverview(activeFiltersJSON) {
-    sentenceCategoriesOrder = ["photographer", "year", "event", "search"];
-    var sentenceSnippets = ["Showing images "];
-    jQuery.each(sentenceCategoriesOrder, function(index, categoryName) {
-      var thisFilterObject = activeFiltersJSON.find(function(item) {
-        return item.name === categoryName;
-      });
-      if (!thisFilterObject) {return;}
-      sentenceSnippets.push(thisFilterObject.preposition);
-      var itemsList = thisFilterObject.values;
-
-      if (itemsList.length > 0) {
-        console.log(itemsList);
-        if (itemsList.length === 1) {
-          sentenceSnippets.push(' ' + itemsList[0]);
-        } else if (itemsList.length > 1) {
-          var lastItem = itemsList.slice(itemsList.length -1);
-          var allButLastItems = itemsList.slice(0, itemsList.length -1);
-          sentenceSnippets.push(allButLastItems.join(", "));
-          sentenceSnippets.push(' and ' + lastItem[0]);
-        }
-
-      } else {
-        if (thisFilterObject.name !== "search") {
-          sentenceSnippets.push('<span class="filter-name">' + thisFilterObject.showingAllText + '</span>');
-        }
-      }
-    });
-    sentenceSnippets.push(".");
-    var filtersHeader = '<div class="filters-header">' + sentenceSnippets.join("") + '</div>';
-    jQuery("div.filters").before(filtersHeader);
-  }
-
   var facetAPIElements = jQuery('.filters .block-facetapi').wrapAll("<div class='flex-box'></div>");
 
 });
