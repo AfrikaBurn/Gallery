@@ -23,4 +23,3 @@
  */
 ?>
 <?php print str_replace('/tags/', '/browse/search/tags/', $output); ?>
-
