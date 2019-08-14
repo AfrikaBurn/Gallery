@@ -265,7 +265,6 @@
     <section id="footer">
         <div class='container-2'>
             <div class='container-1'>
-                <h2>Volunteer now!</h2>
                 <div class='body-content'>
                     <div class="blocks-container footer three-column">
                         <div class='block-outer'>
@@ -280,7 +279,6 @@
                         </div>
                              <div class='block-outer'>
                                 <div class='block-inner'>
-                                <div class="fb-page" data-href="https://www.facebook.com/afrikaburn/" data-tabs="timeline" data-height="322" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/afrikaburn/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/afrikaburn/">AfrikaBurn</a></blockquote></div>                                </div>
                         </div>
                     </div>
                     <div class='clr'></div>
